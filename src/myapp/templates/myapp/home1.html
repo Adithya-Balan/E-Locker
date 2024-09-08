@@ -1,0 +1,198 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock  %}
+
+{% block style %}
+<link href= "{% static 'output.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+{% include "myapp/navbar.html" %}
+
+<!-- Welcome Message -->
+<div class='text-c1 text-3xl text-center mt-32 font-bold transition transform hover:scale-105 duration-500 ease-in-out'>
+    Welcome back, {{ user.first_name }}!
+</div>
+<div class='text-2xl text-center font-mono transition-opacity duration-700 ease-in-out'>
+    Save all your important files in one place!
+</div>
+
+<!-- Most Popular Documents Heading -->
+<div class='bg-c1 text-white py-3 rounded-lg text-3xl text-center mt-16 font-bold mx-auto w-1/2 shadow-lg hover:shadow-xl transition-shadow duration-500'>
+    Most Popular Documents!!
+</div>
+
+<!-- Document Grid -->
+<div class='grid grid-cols-4 gap-x-10 gap-y-12 mt-12 mx-40'>
+
+    <!-- Document 1: Aadhar Card -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4 bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'aadhaar.png' %}" class="h-32 mb-6">
+        <p class="font-mono">Aadhar Card</p>
+        {% if aadhaar %}
+        <a href='{{ aadhaar.file.url }}' class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>
+            View
+        </a>
+        {% else %}
+        <a href='{% url "upload_view" "aadhaar" %}' class='border border-c1 rounded-md bg-c1 text-white mt-3 px-4 py-2 hover:bg-white hover:text-c1 transition-colors duration-300'>
+            Upload
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Document 2: Covid Vaccine Certificate -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4 bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'VACER.png' %}" class="h-32 mb-6">
+        <p class="font-mono">Covid Vaccine Certificate</p>
+        {% if vaccine %}
+        <a href='{{ vaccine.file.url }}' class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>
+            View
+        </a>
+        {% else %}
+        <a href='{% url "upload_view" "VACER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-3 px-4 py-2 hover:bg-white hover:text-c1 transition-colors duration-300'>
+            Upload
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Document 3: Income Certificate -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4 bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'INCER.png' %}" class="h-32 mb-6">
+        <p class=" font-mono">Income Certificate</p>
+        {% if Income_Certificate %}
+        <a href='{{ Income_Certificate.file.url }}'class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>
+            View
+        </a>
+        {% else %}
+        <a href='{% url "upload_view" "INCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-3 px-4 py-2 hover:bg-white hover:text-c1 transition-colors duration-300'>
+            Upload
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Document 4: Class XII Marksheet -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4 bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'HSCER.png' %}" class="h-32 mb-6">
+        <p class="text font-mono">Class XII Marksheet</p>
+        {% if marksheet %}
+        <a href='{{ marksheet.file.url }}' class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>
+            View
+        </a>
+        {% else %}
+        <a href='{% url "upload_view" "HSCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-3 px-4 py-2 hover:bg-white hover:text-c1 transition-colors duration-300'>
+            Upload
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Add more documents similarly with the same style -->
+    <!-- Class X Marksheet -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4  bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="static/HSCER.png" class="h-32 mb-6">
+        <p class='mt-4 font-mono'>Class X Marksheet</p>
+        {% if false %}
+        <a href='{{marksheet.file.url}}' class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "HSCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-3 px-4 py-2 hover:bg-white hover:text-c1 transition-colors duration-300'>Upload</a>
+        {% endif %}
+    </div>
+
+    <!-- Driving License -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4 bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="static/DRVLC.png" class="h-32 mb-6">
+        <p class='mt-4 font-mono'>Driving License</p>
+        {% if driving_lis %}
+        <a href='{{driving_lis.file.url}}' class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "DRVLC" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-4 py-1 hover:bg-white hover:text-c1 cursor-pointer view-btn'>Upload</a>
+        {% endif %}
+    </div>
+
+    <!-- Ration Card -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4 bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="static/RATCR.png" class="h-32 mb-6">
+        <p class='mt-4 font-mono'>Ration Card</p>
+        {% if ration_card %}
+        <a href='{{ration_card.file.url}}' class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "RATCR" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-4 py-1 hover:bg-white hover:text-c1 cursor-pointer view-btn'>Upload</a>
+        {% endif %}
+    </div>
+
+    <!-- Registration of Vehicles Card -->
+    <div class="flex flex-col items-center justify-center shadow-md p-4 bg-white rounded-lg transform hover:scale-105 transition-transform duration-300">
+        <img src="static/RVCER.png" class="h-32 mb-6">
+        <p class='mt-4 font-mono'>Registration of Vehicles Card</p>
+        {% if vechile_card %}
+        <a href='{{vechile_card.file.url}}' class='border border-c1 rounded-md bg-white text-c1 mt-3 px-4 py-2 hover:bg-c1 hover:text-white transition-colors duration-300'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "RVCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-4 py-1 hover:bg-white hover:text-c1 cursor-pointer view-btn'>Upload</a>
+        {% endif %}
+    </div>
+
+</div>
+
+<!-- Custom Documents Section -->
+<div class='bg-c1 text-white py-10 mt-20'>
+    <p class='text-3xl font-bold text-center mb-10 transition transform hover:scale-105 duration-500 ease-in-out'>
+        Save Your Own-Custom Documents
+    </p>
+
+    <form method='POST' action='upload/custom' enctype='multipart/form-data' class='w-2/3 mx-auto'>
+        {% csrf_token %}
+        <div class='grid grid-cols-1 gap-6'>
+            {% for field in form %}
+                <div>
+                    <label class='text-lg font-semibold'>{{ field.label }}</label>
+                    <div class='text-black font-semibold'>{{ field }}</div>
+                    <div class='text-red-500'>{{ field.errors }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class='mt-6'>
+            <input type='submit' class='border px-8 py-3 bg-white text-c1 font-bold hover:bg-c1 hover:text-white transition-colors duration-300 rounded-md cursor-pointer'>
+        </div>
+    </form>
+</div>
+
+<!-- Profile Section -->
+<div class='mt-20 container flex justify-center items-center gap-10'>
+    <div>
+        <p class='text-3xl font-bold text-c1'>Visit Your Profile</p>
+        <p class='text-lg'>Check your profile to view...</p>
+    </div>
+    
+    <a href='{% url "profile" %}'>
+        <img src="{{ user.info.image.url }}" class='h-24 w-24 border rounded-full hover:scale-110 transition-transform duration-300'>
+    </a>
+</div><br>
+
+<!-- Footer Section -->
+<div class='bg-c2 text-white py-10'>
+    <footer class='container flex flex-col items-center gap-10'>
+        <!-- Social Icons -->
+        <div class='flex space-x-10'>
+            <img src="{% static 'facebook.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'linkedin.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'Instagram.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'twitter.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+        </div>
+        
+        <!-- Footer Text -->
+        <div class='text-center max-w-4xl'>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </div>
+
+        <!-- Logo Section -->
+        <div class='flex items-center space-x-2 font-bold text-5xl'>
+            <p>D</p>
+            <p>&</p>
+            <p>l</p>
+        </div>
+
+        <p class='text-2xl font-semibold'>India |</p>
+    </footer>
+</div>
+
+{% endblock %}

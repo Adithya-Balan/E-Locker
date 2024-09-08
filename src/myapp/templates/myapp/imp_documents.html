@@ -1,0 +1,86 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Documents{% endblock  %}
+
+{% block style %}
+<link href= "{% static 'output.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+{% include "myapp/navbar.html" %}
+
+<!-- Your Documents Section -->
+<div class='bg-c1 text-white py-3 mx-40 rounded-lg text-2xl text-center mt-20 font-bold shadow-lg'>
+    Your Documents
+</div>
+
+<div class='grid grid-cols-4 gap-6 mt-12 mx-40 pb-10'>
+    {% if files %}
+        {% for fil in files %}
+            <div class="flex flex-col items-center justify-center shadow-lg rounded-lg p-4 bg-white hover:shadow-xl transition-shadow duration-300">
+                <img src="{% static fil.type %}.png" class="h-32 w-32 object-contain mx-auto mt-8">
+                <p class="mt-6 font-mono text-center text-lg text-gray-700">{{fil.file_name}}</p>
+                <a href='{{fil.file.url}}' class='mt-4 px-4 py-2 bg-c1 text-white text-sm rounded-lg hover:bg-white hover:text-c1 border border-c1 transition-colors duration-300'>
+                    View
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+    <p class='text-center font-semibold text-2xl'>Not Added Yet...</p>
+    {% endif %}
+</div>
+
+<!-- Custom Documents Section -->
+<div class='bg-c1 text-white py-3 mx-40 rounded-lg text-2xl text-center mt-20 font-bold shadow-lg'>
+    Your Custom Documents
+</div>
+
+<div class='grid grid-cols-4 gap-6 mt-12 mx-40 pb-5'>
+    
+    {% if custom %}
+    {% for fil in custom %}
+    <div class="flex flex-col items-center justify-center shadow-lg rounded-lg p-4 bg-white hover:shadow-xl transition-shadow duration-300 w-60 h-72">
+        <img src="{% static 'document.png' %}" class="h-24 w-24 object-contain mx-auto mt-4">
+        <p class="mt-4 font-mono text-center text-sm text-gray-700">{{fil.file_name}}</p>
+        <a href='{{fil.file.url}}' class='mt-4 px-4 py-2 bg-c1 text-white text-sm rounded-lg hover:bg-white hover:text-c1 border border-c1 transition-colors duration-300'>
+            View
+        </a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class='text-center font-semibold text-2xl'>Not Added Yet...</p>
+    {% endif %}
+        
+    
+</div><br><br>
+
+
+<!-- Footer Section -->
+<div class='bg-c2 text-white py-10'>
+    <footer class='container flex flex-col items-center gap-10'>
+        <!-- Social Icons -->
+        <div class='flex space-x-10'>
+            <img src="{% static 'facebook.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'linkedin.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'Instagram.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'twitter.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+        </div>
+        
+        <!-- Footer Text -->
+        <div class='text-center max-w-4xl'>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </div>
+
+        <!-- Logo Section -->
+        <div class='flex items-center space-x-2 font-bold text-5xl'>
+            <p>D</p>
+            <p>&</p>
+            <p>l</p>
+        </div>
+
+        <p class='text-2xl font-semibold'>India |</p>
+    </footer>
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Recent{% endblock  %}
+
+{% block style %}
+<link href= "{% static 'output.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% include "myapp/navbar.html" %}
+
+<!-- Heading -->
+<p class='mt-20 text-3xl text-c1 font-bold text-center transition duration-500 ease-in-out transform hover:scale-105'>
+    Recently Modified!!
+</p>
+
+<!-- Table Header -->
+<div class='mt-16'>
+    <div class='container max-w-2xl grid grid-cols-3 text-xl font-semibold text-gray-700 text-center mx-auto'>
+        <p class="transition-all duration-500 hover:text-c1">File Name</p>
+        <p class="transition-all duration-500 hover:text-c1">Created</p>
+        <p class="transition-all duration-500 hover:text-c1">Last Modified</p>
+    </div>
+</div>
+
+<!-- Recent Files List with hover effects and consistent alignment -->
+<div class='mt-10 container max-w-4xl flex flex-col space-y-4 mx-auto'>
+  {% for file in recent_files %}
+    <div class='grid grid-cols-3 justify-between items-center bg-c1 text-white p-4 rounded-lg shadow-lg w-full max-w-xl mx-auto transform hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-2xl'>
+      
+      <!-- File Name -->
+      <a href='{{ file.file.url }}' class='text-lg font-bold hover:underline transition duration-300 text-left'>{{ file.file_name }}</a>
+
+      <!-- Created Date -->
+      <p class='text-gray-300 text-center'>{{ file.created }}</p>
+
+      <!-- Modified Date -->
+      <p class='text-gray-300 text-center'>{{ file.modified }}</p>
+    </div>
+  {% endfor %}
+</div><br><br>
+
+<!-- Footer Section -->
+<div class='bg-c2 text-white py-10'>
+    <footer class='container flex flex-col items-center gap-10'>
+        <!-- Social Icons -->
+        <div class='flex space-x-10'>
+            <img src="{% static 'facebook.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'linkedin.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'Instagram.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+            <img src="{% static 'twitter.png' %}" class='h-10 w-10 hover:opacity-75 transition-opacity duration-300'>
+        </div>
+        
+        <!-- Footer Text -->
+        <div class='text-center max-w-4xl'>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </div>
+
+        <!-- Logo Section -->
+        <div class='flex items-center space-x-2 font-bold text-5xl'>
+            <p>D</p>
+            <p>&</p>
+            <p>l</p>
+        </div>
+
+        <p class='text-2xl font-semibold'>India |</p>
+    </footer>
+</div>
+
+
+{% endblock %}

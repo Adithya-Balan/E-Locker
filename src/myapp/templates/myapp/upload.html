@@ -1,0 +1,37 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Upload{% endblock %}
+
+{% block style %}<link href= "{% static 'output.css' %}" rel="stylesheet">{% endblock %}
+
+{% block content %}
+
+{% include "myapp/navbar.html" %}
+
+<!-- Hero Section -->
+<div class="text-center mt-24">
+    <img src="{% static category|stringformat:'s' %}.png" class="h-1/2 mx-auto transform transition-transform duration-300 hover:scale-105">
+</div>
+
+<!-- Form Section -->
+<div class="bg-c1 text-white mx-auto mt-20 p-8 rounded-3xl shadow-lg max-w-lg transform transition-transform duration-300 hover:scale-105">
+    <p class="text-2xl font-bold text-center mb-6">Save Your {{category_name}}</p>
+
+    <form method='POST' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="space-y-4">
+            {% for field in form %}
+                <div class="flex flex-col">
+                    <label class="text-lg font-semibold mb-2">{{field.label}}</label>
+                    <span class="text-black font-semibold">{{field}}</span>
+                    <span class="text-red-400">{{field.errors}}</span>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="mt-6 text-center">
+            <input type='submit' class='border border-c1 bg-white text-c1 px-6 py-2 rounded-md shadow-md hover:bg-c1 hover:text-white hover:shadow-lg transition-transform duration-300 transform hover:scale-105'>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

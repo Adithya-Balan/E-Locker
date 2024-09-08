@@ -1,0 +1,41 @@
+<nav class="fixed top-0 w-full font-semibold bg-white shadow-md z-50">
+    <div class="container mx-auto flex justify-between items-center p-4 pb-2">
+        <!-- Left side links -->
+        <div class="w-1/2 flex space-x-10 text-lg ml-10">
+            <a href='/home' class='text-c1 hover:text-blue-500 transition-colors duration-200'>
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href='/document-imp' class='text-c1 hover:text-blue-500 transition-colors duration-200'>
+                <i class="fas fa-file-alt"></i> Documents
+            </a>
+            <a href='/Recent' class='text-c1 hover:text-blue-500 transition-colors duration-200'>
+                <i class="fas fa-history"></i> Recent
+            </a>
+        </div>
+
+        <!-- Right side profile with dropdown -->
+        <div class="w-1/2 flex justify-end items-center space-x-10 mr-10 relative">
+            <a href='#' class='text-c1 hover:text-blue-500 transition-colors duration-200'>
+                <i class="fas fa-bell"></i>
+            </a>
+        
+            <!-- Profile Image with Dropdown -->
+            <div class="relative group">
+                <a href='{% url "profile" %}' class="focus:outline-none">
+                    <img src="{{user.info.image.url}}" alt="Profile" class='h-10 w-10 border rounded-full hover:opacity-80 transition-opacity duration-200'>
+                </a>
+                <!-- Dropdown -->
+                <div class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg hidden group-hover:block group-focus:block">
+                    <a href='{% url "profile" %}' class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Profile</a>
+                    <a href='#' class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Settings</a>
+                    <form action="{% url 'logout' %}" method="post" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="block w-full px-4 py-2 text-red-600 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-c1 transition-colors duration-200">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

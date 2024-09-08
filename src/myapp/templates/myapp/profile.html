@@ -1,0 +1,39 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+
+{% block style %}<link href= "{% static 'output.css' %}" rel="stylesheet">{% endblock %}
+
+{% block content %}
+
+{% include "myapp/navbar.html" %}
+
+<!-- Profile Section -->
+<div class="container mx-auto flex flex-col items-center space-y-6 mt-24 px-4">
+
+    <!-- Profile Picture -->
+    <div class="relative">
+        <img src='{{ user_obj.image.url }}' alt='profile.img' class='h-44 w-44 rounded-full border-4  shadow-lg transform transition-transform duration-300 hover:scale-105'>
+    </div>
+
+    <!-- User Name -->
+    <p class='text-4xl font-bold font-roboto text-c1'>{{user_obj.user.first_name }} {{user_obj.user.last_name}}</p>
+
+    <!-- Username -->
+    <p class='text-lg font-semibold text-c2'>{{user_obj.user.username}}</p>
+
+    <!-- Bio -->
+    <div class='text-lg text-center font-roboto text-gray-800'>
+        <p>{{user_obj.bio|linebreaks}}</p>
+    </div>
+
+    <!-- Additional Information -->
+    <div class='bg-c1 text-white p-8 rounded-3xl shadow-lg transform transition-transform duration-300 hover:scale-105'>
+        <p class='text-xl mb-2'><span class='font-semibold'>No of files stored:</span> {{no_of_files}}</p>
+        <p class='text-xl mb-2'><span class='font-semibold'>Recently Added file:</span> {{recent_file_name}}</p>
+        <p class='text-xl'><span class='font-semibold'>Date joined:</span> {{user_obj.date_joined}}</p>
+    </div>
+
+</div>
+
+{% endblock %}

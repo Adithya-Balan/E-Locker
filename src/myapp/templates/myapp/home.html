@@ -1,0 +1,152 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock  %}
+
+{% block style %}<link href= "{% static 'output.css' %}" rel="stylesheet">{% endblock  %}
+
+{% block content %}
+
+{% include "myapp/navbar.html" %}
+<div class='text-c1 text-2xl text-center mt-20 font-bold'>Welcome back {{user.first_name}} !</div>
+<div class='text-2xl text-center font-mono'>Save all your important files in one place!...</div>
+
+
+<div class='bg-c1 text-white ml-40 py-2 mr-40  rounded-lg text-2xl text-center mt-16 font-bold'>Most Popular Documents!!</div>
+<div class='grid grid-cols-4 gap-x-0 gap-y-10 mt-12 ml-40 mr-40 '>
+
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/aadhaar.png" class="h-1/2">
+        <p class="mt-10 font-mono">Aadhar Card</p>
+        {% if aadhaar %}
+        <a href='{{aadhaar.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "aadhaar" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+        {% endif %}
+        
+    </div>
+
+
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/VACER.png" class="h-1/2">
+        <p class='mt-10 font-mono'>Covid Vacine Certifcate</p>
+        {% if vaccine %}
+        <a href='{{vaccine.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "VACER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+        {% endif %}
+    </div>
+
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/INCER.png" class="h-1/2">
+        <p class='mt-10 font-mono'>Income Certificate</p>
+        {% if Income_Certificate %}
+        <a href='{{Income_Certificate.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "INCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+        {% endif %}
+    </div>
+
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/HSCER.png" class="h-1/2">
+        <p class='mt-10 font-mono'>Class XII Marksheet</p>
+        {% if marksheet %}
+        <a href='{{marksheet.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "HSCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+        {% endif %}
+    </div>
+        
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/HSCER.png" class="h-1/2">
+        {% if marksheet %}
+        <a href='{{marksheet.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <p class='mt-10 font-mono'>Class X Marksheet</p>
+        {% endif %}
+        <a href='{% url "upload_view" "HSCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+    </div>
+
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/DRVLC.png" class="h-1/2">
+        <p class='mt-10 font-mono'>Driving License</p>
+        {% if driving_lis %}
+        <a href='{{driving_lis.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "DRVLC" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+        {% endif %}
+    </div>
+
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/RATCR.png" class="h-1/2">
+        <p class='mt-10 font-mono'>Ration Card</p>
+        {% if ration_card %}
+        <a href='{{ration_card.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "RATCR" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+        {% endif %}
+    </div>
+
+    <div class="flex flex-col items-center justify-center shadow-md z-50">
+        <img src="static/RVCER.png" class="h-1/2">
+        <p class='mt-10 font-mono'>Registration of vechicles Card</p>
+        {% if vechile_card %}
+        <a href='{{vechile_card.file.url}}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>View</a>
+        {% else %}
+        <a href='{% url "upload_view" "RVCER" %}' class='border border-c1 rounded-md bg-c1 text-white mt-2 px-2 hover:bg-white hover:text-c1 cursor-pointer'>Upload</a>
+        {% endif %}
+    </div>
+</div><br>
+
+{% comment %} profile section {% endcomment %}
+<div class='bg-c1 text-white'><br>
+    <p class='text-2xl font-bold text-center '>Save Your own-custom Documents</p><br>
+
+    <form method='POST' action='upload/custom' enctype = 'multipart/form-data'>
+        {% csrf_token %}
+    <div class='container ml-56 mt-10'>
+        {% for field in form %}
+            {{field.label }}<br>
+            <span class='text-black font-semibold'>{{field}}</span><br>
+            {{field.errors}}<br><br>
+        {% endfor %}
+    </div>
+        <input type = 'submit' class = 'border ml-56 px-5 py-2 hover:cursor-pointer hover:bg-white hover:text-c1'>
+    </form><br>
+</div>
+</div>
+   
+{% comment %} profile {% endcomment %}
+<div class='mt-10 container flex gap-x-44'>
+    <div>
+        <p class='ml-96 text-2xl font-mono font-bold text-c1'>Visit your profile</p><br>
+        <p class='ml-96'>Check your profile to view...</p>
+    </div>
+    
+    <a href='{% url "profile" %}'><img src = "{{user.info.image.url}}" class='h-24 w-24 border rounded-full'></a>
+</div><br>
+
+{% comment %} footer {% endcomment %}
+<div class='bg-c2 text-white'>
+    <footer class='container flex flex-col gap-14 mt-10 '>
+        <div class='flex space-x-20 mx-auto mt-24'>
+            <img src="{% static 'facebook.png' %}" class='h-10 w-10' alt="github">
+            <img src="{% static 'linkedin.png' %}"class='h-10 w-10' alt="linkedin">
+            <img src="{% static 'Instagram.png' %}" class='h-10 w-10' alt="instagram">                
+            <img src="{% static 'twitter.png' %}" class='h-10 w-10' alt="leetcode.svg">
+            {% comment %} <img src="{% static 'assest/framework.svg' %}" class='h-10 w-10' alt="github">     {% endcomment %}
+        </div>
+        <div class='text-center ml-40 mr-40'>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
+        </div>
+
+        <div class='container flex flex-row gap-2 font-bold items-center justify-center font-serif'>
+            <p class='text-5xl'>D</p>
+            <p>&</p>
+            <p class='text-5xl'>l</p>
+        </div>
+        
+        <p class='text-3xl text-center font-semibold'>India |</p><br>
+    </footer>
+
+</div>
+{% endblock  %}
